@@ -32,7 +32,7 @@ class BaseModel:
     """ All other models will inherit from this BaseModel. """
 
     # Class attributes which other models will inherit.
-    id = Column(String(60), primary_key=True)
+    id = Column(String(64), primary_key=True)
 
     # Generate default values in the database.
     created_at = Column(DateTime, default=datetime.utcnow)
