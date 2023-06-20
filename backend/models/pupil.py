@@ -17,8 +17,14 @@ from sqlalchemy import Column, String, Enum, Date, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Pupil(BaseModel, Base):
-    """Representation of pupil data"""
+class Pupil(BaseModel, Base):git commit -m 'added documentation for the Pupil class arguments'
+    """
+        Representation of pupil data
+
+        Args:
+            BaseModel (_type_): class
+            Base (_type_): sqlalchemy declarative_base
+    """
     __tablename__ = "pupils"
     school_id = Column(String(64), ForeignKey('schools.id'), nullable=False)
     parent_id = Column(String(64), ForeignKey('parents.id')) #Super-Guardian
