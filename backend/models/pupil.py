@@ -17,7 +17,7 @@ from sqlalchemy import Column, String, Enum, Date, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Pupil(BaseModel, Base):git commit -m 'added documentation for the Pupil class arguments'
+class Pupil(BaseModel, Base):
     """
         Representation of pupil data
 
