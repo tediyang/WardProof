@@ -16,7 +16,14 @@ from hashlib import md5
 
 
 class Parent(BaseModel, Base):
-    """ Representation of parent data. """
+    """
+        Representation of parent data.
+
+        Args:
+            BaseModel (_type_): class
+            Base (_type_): sqlalchemy declarative_base
+    """
+
     __tablename__ = 'parents'
     email = Column(String(64), nullable=False, unique=True)
     password = Column(String(64), nullable=False)
@@ -27,7 +34,7 @@ class Parent(BaseModel, Base):
     tag = Column(Enum('SUPER-GUARDIAN', 'AUXILLARY-GUARDIAN'))
     dob = Column(Date)
     activity = relationship("Activity", backref="parent", viewonly=True)
-    pupils = relationship("Pupil", backref="parent", cascade="delete")
+    children = relationship("Pupil", backref="parent", cascade="delete")
     auxillary_guardians = relationship("AuxillaryGuardian",
                                        backref="parent",
                                        cascade="delete")
