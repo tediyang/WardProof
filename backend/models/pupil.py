@@ -31,7 +31,7 @@ class Pupil(BaseModel, Base):
     parent_fullname = Column(String(64)) #Super-Guardian fullname
 
     activity = relationship("Activity", uselist=False, backref="pupil",
-                            viewonly=True)
+                            viewonly=True, cascade="all, delete")
     auxillary_guardians = relationship("AuxillaryGuardian",
                                        backref="pupil",
                                        cascade="delete",
