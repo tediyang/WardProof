@@ -8,8 +8,10 @@
     1. It provides the following class atrribute relationships:
       - activity: Fetch all the activities carried out with a
       particular child's id.
-      - auxillary_guardians: Fetch all the auxillary guardians attached
-      to a particular child.
+      - pupil: Fetch all the pupils enrolled in the school.
+
+    2. Public instance method:
+      - __setattr__: encrypt the school password using hashlib.md5.
 """
 
 from models.basemodel import BaseModel, Base
