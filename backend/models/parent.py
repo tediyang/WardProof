@@ -26,8 +26,7 @@ class Parent(BaseModel, Base):
     gender = Column(Enum('MALE', 'FEMALE', 'OTHERS'))
     tag = Column(Enum('SUPER-GUARDIAN', 'AUXILLARY-GUARDIAN'))
     dob = Column(Date)
-    activity = relationship("Activity", uselist=False,
-                            backref="parent", viewonly=True)
+    activity = relationship("Activity", backref="parent", viewonly=True)
     pupils = relationship("Pupil", backref="parent", cascade="delete")
     auxillary_guardians = relationship("AuxillaryGuardian",
                                        backref="parent",
