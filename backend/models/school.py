@@ -22,7 +22,14 @@ from hashlib import md5
 
 
 class School(BaseModel, Base):
-    """Representation of the School data"""
+    """
+        Representation of the School data
+
+        Args:
+            BaseModel (_type_): class
+            Base (_type_): sqlalchemy declarative_base  
+    """
+
     __tablename__ = "schools"
     email = Column(String(64), nullable=False, unique=True)
     password = Column(String(64), nullable=False)
