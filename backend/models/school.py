@@ -33,7 +33,7 @@ class School(BaseModel, Base):
     __tablename__ = "schools"
     email = Column(String(64), nullable=False, unique=True)
     password = Column(String(64), nullable=False)
-    name = Column(String(128), nullable=False)
+    name = Column(String(128), nullable=False, unique=True)
     address = Column(String(64))
     city = Column(String(64))
 
