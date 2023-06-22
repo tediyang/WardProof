@@ -26,7 +26,7 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-load_dotenv('axist.env')
+load_dotenv('wardproof.env')
 
 classes = {"Activity": Activity, "Parent": Parent, "Pupil": Pupil,
            "School": School}
