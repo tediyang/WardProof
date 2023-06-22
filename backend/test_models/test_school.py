@@ -82,7 +82,7 @@ class TestSchool(unittest.TestCase):
         sch = School()
         sch.password = 'Wardproof123#'
         self.assertTrue(hasattr(sch, "password"))
-        self.assertEqual(sch.parent_id, None)
+        self.assertEqual(sch.password, None)
 
     def test_name_attr(self):
         """Test School has attr name, and it's None"""
