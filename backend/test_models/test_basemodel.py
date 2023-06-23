@@ -97,16 +97,16 @@ class TestBaseModel(unittest.TestCase):
         """Test that two BaseModel instances have different datetime objects
         and that upon creation have identical updated_at and created_at
         value."""
-        first1 = datetime.now()
+        first1 = datetime.utcnow()
         time.sleep(1e-4)
         inst1 = BaseModel()
         time.sleep(1e-4)
-        second1 = datetime.now()
+        second1 = datetime.utcnow()
         self.assertTrue(first1 <= inst1.created_at <= second1)
         time.sleep(1e-4)
-        first2 = datetime.now()
+        first2 = datetime.utcnow()
         inst2 = BaseModel()
-        second2 = datetime.now()
+        second2 = datetime.utcnow()
         self.assertTrue(first2 <= inst2.created_at <= second2)
         self.assertEqual(inst1.created_at, inst1.updated_at)
         self.assertEqual(inst2.created_at, inst2.updated_at)
@@ -117,7 +117,8 @@ class TestBaseModel(unittest.TestCase):
         """ Test conversion of object attributes to dictionary. """
         instance = BaseModel()
         dic = instance.to_dict()
-        expected_attrs = ["created_at",
+        expected_attrs = ["id",
+                          "created_at",
                           "updated_at",
                           "__class__"]
         self.assertCountEqual(dic.keys(), expected_attrs)
