@@ -3,7 +3,7 @@
 """
     This model create the activity data and inherits from
     the BaseModel.
-    
+
     Description:
     1. It provides the following class atrribute relationships:
       - activity: Fetch all the activities carried out with a
@@ -13,11 +13,7 @@
 """
 
 from models.basemodel import BaseModel, Base
-from sqlalchemy import Column, String, ForeignKey, Enum, DateTime
-from sqlalchemy.orm import relationship
-from datetime import datetime
-import uuid
-
+from sqlalchemy import Column, String, ForeignKey, Enum
 
 class Activity(BaseModel, Base):
     """
