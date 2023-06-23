@@ -15,7 +15,6 @@
 """
 
 from models.basemodel import BaseModel, Base
-
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from hashlib import md5
@@ -27,7 +26,7 @@ class School(BaseModel, Base):
 
         Args:
             BaseModel (_type_): class
-            Base (_type_): sqlalchemy declarative_base  
+            Base (_type_): sqlalchemy declarative_base
     """
 
     __tablename__ = "schools"
