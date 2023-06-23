@@ -12,7 +12,7 @@
       to a particular child.
 """
 
-from basemodel import BaseModel, Base
+from models.basemodel import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Enum, DateTime
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -32,8 +32,7 @@ class Activity(BaseModel, Base):
     school_id = Column(String(64), ForeignKey("schools.id"), nullable=False)
     pupil_id = Column(String(64), ForeignKey("pupils.id"), nullable=False)
     parent_id = Column(String(64), ForeignKey("parents.id"), nullable=False)
-    parent_name = Column(String(64), ForeignKey("parents.first_name"),
-                         nullable=False)
+
     action = Column(Enum('PICK-UP', 'DROP-OFF'), nullable=False)
 
     def __init__(self):
