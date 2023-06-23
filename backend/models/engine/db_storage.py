@@ -22,11 +22,12 @@ from models.parent import Parent
 from models.pupil import Pupil
 from models.school import School
 from os import getenv
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-load_dotenv('wardproof.env')
+path = find_dotenv('wardproof.env')
+load_dotenv(path)
 
 classes = {"Activity": Activity, "Parent": Parent, "Pupil": Pupil,
            "School": School}
