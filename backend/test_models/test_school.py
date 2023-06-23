@@ -129,3 +129,7 @@ class TestSchool(unittest.TestCase):
         sch = School()
         string = "[School] ({}) {}".format(sch.id, sch.__dict__)
         self.assertEqual(string, str(sch))
+
+
+if __name__ == '__main__':
+    unittest.main()

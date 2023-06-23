@@ -147,3 +147,7 @@ class TestParent(unittest.TestCase):
         par = Parent()
         string = "[Parent] ({}) {}".format(par.id, par.__dict__)
         self.assertEqual(string, str(par))
+
+
+if __name__ == '__main__':
+    unittest.main()

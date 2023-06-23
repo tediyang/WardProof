@@ -158,3 +158,7 @@ class TestPupil(unittest.TestCase):
         pup = Pupil()
         string = "[Pupil] ({}) {}".format(pup.id, pup.__dict__)
         self.assertEqual(string, str(pup))
+
+
+if __name__ == '__main__':
+    unittest.main()

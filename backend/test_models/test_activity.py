@@ -128,3 +128,7 @@ class TestActivity(unittest.TestCase):
         act = Activity()
         string = "[Activity] ({}) {}".format(act.id, act.__dict__)
         self.assertEqual(string, str(act))
+
+
+if __name__ == '__main__':
+    unittest.main()
