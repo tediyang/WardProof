@@ -39,9 +39,9 @@ class Parent(BaseModel, Base):
                                        backref="parent",
                                        cascade="delete")
 
-    def __init__(self):
-        """initializes parent"""
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        """initialize parent"""
+        super().__init__(*args, **kwargs)
 
     def __setattr__(self, name, value):
         """sets a password with md5 encryption"""

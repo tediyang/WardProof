@@ -39,9 +39,9 @@ class School(BaseModel, Base):
     pupil = relationship("Pupil", backref="school")
     activity = relationship("Activity", backref="school", viewonly=True)
 
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         """initialize school"""
-        super().__init__()
+        super().__init__(*args, **kwargs)
 
     def __setattr__(self, name, value):
         """sets a password with md5 encryption"""

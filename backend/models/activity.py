@@ -31,6 +31,6 @@ class Activity(BaseModel, Base):
 
     action = Column(Enum('PICK-UP', 'DROP-OFF'), nullable=False)
 
-    def __init__(self):
-        """initializes parent"""
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        """initialize activity"""
+        super().__init__(*args, **kwargs)

@@ -40,6 +40,6 @@ class Pupil(BaseModel, Base):
     activity = relationship("Activity", uselist=False, backref="pupil",
                             cascade="all, delete")
 
-    def __init__(self):
-        """ Initializes pupil """
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        """initialize pupil"""
+        super().__init__(*args, **kwargs)

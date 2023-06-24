@@ -27,6 +27,6 @@ class AuxillaryGuardian(BaseModel, Base):
     gender = Column(Enum('MALE', 'FEMALE', 'OTHERS'))
     tag = Column(Enum('AUXILLARY-GUARDIAN'))
 
-    def __init__(self):
-        """initializes parent"""
-        super().__init__()
+    def __init__(self, *args, **kwargs):
+        """initialize auxillary"""
+        super().__init__(*args, **kwargs)
