@@ -21,6 +21,7 @@ from models.activity import Activity
 from models.parent import Parent
 from models.pupil import Pupil
 from models.school import School
+from models.auxillary import AuxillaryGuardian
 from os import getenv
 from dotenv import load_dotenv, find_dotenv
 from sqlalchemy import create_engine
@@ -30,7 +31,7 @@ path = find_dotenv('wardproof.env')
 load_dotenv(path)
 
 classes = {"Activity": Activity, "Parent": Parent, "Pupil": Pupil,
-           "School": School}
+           "School": School, 'AuxillaryGuardian': AuxillaryGuardian}
 
 
 class DBStorage:
