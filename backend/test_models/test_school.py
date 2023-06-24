@@ -82,14 +82,14 @@ class TestSchool(unittest.TestCase):
         sch = School()
         sch.password = 'Wardproof123#'
         self.assertTrue(hasattr(sch, "password"))
-        self.assertEqual(sch.password, None)
+        self.assertNotEqual(sch.password, 'Wardproof123#')
 
     def test_name_attr(self):
         """Test School has attr name, and it's None"""
         sch = School()
         self.assertTrue(hasattr(sch, "name"))
         self.assertEqual(sch.name, None)
-        
+
     def test_address_attr(self):
         """Test School has attr address, and it's None"""
         sch = School()
@@ -109,7 +109,7 @@ class TestSchool(unittest.TestCase):
         self.assertEqual(type(new_dic), dict)
         self.assertFalse("_sa_instance_state" in new_dic)
         for attr in sch.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_dic)
         self.assertTrue("__class__" in new_dic)
 
