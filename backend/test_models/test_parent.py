@@ -89,7 +89,7 @@ class TestParent(unittest.TestCase):
         par = Parent()
         self.assertTrue(hasattr(par, "first_name"))
         self.assertEqual(par.first_name, None)
-        
+
     def test_last_name_attr(self):
         """Test Parent has attr last_name, and it's None"""
         par = Parent()
@@ -127,7 +127,7 @@ class TestParent(unittest.TestCase):
         self.assertEqual(type(new_dic), dict)
         self.assertFalse("_sa_instance_state" in new_dic)
         for attr in par.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_dic)
         self.assertTrue("__class__" in new_dic)
 
