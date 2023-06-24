@@ -19,7 +19,8 @@ class AuxillaryGuardian(BaseModel, Base):
     """
 
     __tablename__ = 'auxillaries'
-    parent_id = Column(String(64), ForeignKey('parents.id'), nullable=False)
+    super_id = Column(String(64), ForeignKey('parents.id'))
+    parent_id = Column(String(64), nullable=False)
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
     other_name = Column(String(64))
