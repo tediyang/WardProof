@@ -88,7 +88,7 @@ class TestPupil(unittest.TestCase):
         pup = Pupil()
         self.assertTrue(hasattr(pup, "first_name"))
         self.assertEqual(pup.first_name, None)
-        
+
     def test_last_name_attr(self):
         """Test Pupil has attr last_name, and it's None"""
         pup = Pupil()
@@ -138,7 +138,7 @@ class TestPupil(unittest.TestCase):
         self.assertEqual(type(new_dic), dict)
         self.assertFalse("_sa_instance_state" in new_dic)
         for attr in pup.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_dic)
         self.assertTrue("__class__" in new_dic)
 
