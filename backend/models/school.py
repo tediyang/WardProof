@@ -37,7 +37,7 @@ class School(BaseModel, Base):
     city = Column(String(64))
 
     pupil = relationship("Pupil", backref="school")
-    activity = relationship("Activity", backref="parent", viewonly=True)
+    activity = relationship("Activity", backref="school", viewonly=True)
 
     def __init__(self):
         """initialize school"""
