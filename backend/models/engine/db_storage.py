@@ -96,7 +96,8 @@ class DBStorage:
         obj = self.get(cls, id)
 
         if obj:
-            obj(**dic)
+            for key, val in dic.items():
+                setattr(obj, key, val)
             obj.save()
             self.save()
 
