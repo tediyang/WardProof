@@ -25,9 +25,9 @@ class Activity(BaseModel, Base):
     """
 
     __tablename__ = "activities"
-    school_id = Column(String(64), ForeignKey("schools.id"), nullable=False)
-    pupil_id = Column(String(64), ForeignKey("pupils.id"), nullable=False)
-    parent_id = Column(String(64), ForeignKey("parents.id"), nullable=False)
+    school_id = Column(String(64), ForeignKey("schools.id"))
+    pupil_id = Column(String(64), ForeignKey("pupils.id"))
+    parent_id = Column(String(64), ForeignKey("parents.id"))
 
     action = Column(Enum('PICK-UP', 'DROP-OFF'), nullable=False)
 
