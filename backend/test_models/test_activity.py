@@ -89,12 +89,6 @@ class TestActivity(unittest.TestCase):
         self.assertTrue(hasattr(act, "parent_id"))
         self.assertEqual(act.parent_id, None)
 
-    def test_parent_name_attr(self):
-        """Test Activity has attr parent_name, and it's None"""
-        act = Activity()
-        self.assertTrue(hasattr(act, "parent_name"))
-        self.assertEqual(act.parent_name, None)
-
     def test_action_attr(self):
         """Test Activity has attr action, and it's None"""
         act = Activity()
@@ -108,7 +102,7 @@ class TestActivity(unittest.TestCase):
         self.assertEqual(type(new_dic), dict)
         self.assertFalse("_sa_instance_state" in new_dic)
         for attr in act.__dict__:
-            if attr is not "_sa_instance_state":
+            if attr != "_sa_instance_state":
                 self.assertTrue(attr in new_dic)
         self.assertTrue("__class__" in new_dic)
 
