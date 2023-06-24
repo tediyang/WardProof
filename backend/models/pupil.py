@@ -26,7 +26,7 @@ class Pupil(BaseModel, Base):
             Base (_type_): sqlalchemy declarative_base
     """
     __tablename__ = "pupils"
-    school_id = Column(String(64), ForeignKey('schools.id'), nullable=False)
+    school_id = Column(String(64), ForeignKey('schools.id'))
     parent_id = Column(String(64), ForeignKey('parents.id')) #Super-Guardian
     first_name = Column(String(64), nullable=False)
     last_name = Column(String(64), nullable=False)
@@ -39,10 +39,7 @@ class Pupil(BaseModel, Base):
 
     activity = relationship("Activity", uselist=False, backref="pupil",
                             cascade="all, delete")
-    auxillary_guardians = relationship("AuxillaryGuardian",
-                                       backref="pupil",
-                                       cascade="delete",
-                                       viewonly=True)
+
 
     def __init__(self):
         """ Initializes pupil """
