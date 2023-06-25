@@ -56,7 +56,9 @@ class BaseModel:
 
     def __str__(self):
         """ string representation of the Object class """
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        dic = self.__dict__.copy()
+        dic.pop("_sa_instance_state", None)
+        return f"[{self.__class__.__name__}] ({self.id}) {dic}"
 
     def save(self):
         """ updates the attribute 'updated_at' with the current datetime """
