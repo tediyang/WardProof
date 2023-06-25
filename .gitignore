@@ -1,4 +1,7 @@
+# environment files
 setup_mysql_db_test.sql
 setup_mysql_db.sql
 wardproof.env
+
+# Byte-compiled
 __pycache__
