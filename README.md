@@ -3,4 +3,4 @@ Wardproof is an application that creates a strong connection between Parents/Gua
 
 ### Author:
 * Eyang, Daniel Eyoh [Github](https://github.com/Tediyang), Email: <daniel.eyang.ed@gmail.com>
-* Ekabua, Mawoda [Github](https://github.com/mdekabs)
+* Ekabua, Mawoda [Github](https://github.com/mdekabs) Email: <onemawoda@gmail.com>
