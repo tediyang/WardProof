@@ -47,7 +47,8 @@ class DBStorage:
         db = getenv('WARDPROOF_DB')
 
         self.__engine = create_engine('mysql+mysqlconnector://{}:{}@{}/{}'.
-                                      format(user, pwd, host, db))
+                                      format(user, pwd, host, db),
+                                      pool_pre_ping=True)
 
         if getenv('WARDPROOF_ENV') == "test":
             Base.metadata.drop_all(self.__engine)
