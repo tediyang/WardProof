@@ -69,7 +69,7 @@ class DBStorage:
                     new_dict[key] = obj
         return (new_dict)
 
-    def first(self, cls, dic):
+    def validate(self, cls, dic):
         """
             query on the current database session and return the
             first data found
