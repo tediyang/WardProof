@@ -69,6 +69,16 @@ class DBStorage:
                     new_dict[key] = obj
         return (new_dict)
 
+    def first(self, cls, dic):
+        """
+            query on the current database session and return the
+            first data found
+        """
+        for clss in classes:
+            if cls == classes[clss] or cls == clss:
+                obj = self.__session.query(classes[clss]).filter_by(**dic).first()
+                return obj
+
     def new(self, obj):
         """add the object to the current database session"""
         self.__session.add(obj)
