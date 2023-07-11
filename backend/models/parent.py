@@ -12,7 +12,7 @@
 from models.basemodel import BaseModel, Base
 from sqlalchemy import Column, String, Enum, Date
 from sqlalchemy.orm import relationship
-from hashlib import md5
+from flask_bcrypt import generate_password_hash
 
 
 class Parent(BaseModel, Base):
@@ -44,7 +44,7 @@ class Parent(BaseModel, Base):
         super().__init__(*args, **kwargs)
 
     def __setattr__(self, name, value):
-        """sets a password with md5 encryption"""
+        """sets a password with encryption"""
         if name == "password":
-            value = md5(value.encode()).hexdigest()
+            value = generate_password_hash(value).decode('utf8')
         super().__setattr__(name, value)
