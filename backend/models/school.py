@@ -17,7 +17,7 @@
 from models.basemodel import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from hashlib import md5
+from flask_bcrypt import generate_password_hash
 
 
 class School(BaseModel, Base):
@@ -32,7 +32,7 @@ class School(BaseModel, Base):
     __tablename__ = "schools"
     email = Column(String(64), nullable=False, unique=True)
     password = Column(String(64), nullable=False)
-    name = Column(String(128), nullable=False, unique=True)
+    name = Column(String(128), nullable=False)
     address = Column(String(64))
     city = Column(String(64))
 
@@ -44,7 +44,7 @@ class School(BaseModel, Base):
         super().__init__(*args, **kwargs)
 
     def __setattr__(self, name, value):
-        """sets a password with md5 encryption"""
+        """sets a password with encryption"""
         if name == "password":
-            value = md5(value.encode()).hexdigest()
+            value = generate_password_hash(value).decode('utf8')
         super().__setattr__(name, value)
