@@ -1,0 +1,22 @@
+Register a new school
+---
+tags:
+  - Schools
+parameters:
+  - name: body_request
+  in: body
+  required: true
+  requires:
+    - email
+    - password
+  properties:
+    email:
+      type: string
+    password:
+      type: string
+
+responses:
+  400:
+    description: Email address already exists
+  201:
+    description: successfully created school
