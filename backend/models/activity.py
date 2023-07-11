@@ -3,17 +3,11 @@
 """
     This model create the activity data and inherits from
     the BaseModel.
-
-    Description:
-    1. It provides the following class atrribute relationships:
-      - activity: Fetch all the activities carried out with a
-      particular child's id.
-      - auxillary_guardians: Fetch all the auxillary guardians attached
-      to a particular child.
 """
 
 from models.basemodel import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey, Enum
+
 
 class Activity(BaseModel, Base):
     """
