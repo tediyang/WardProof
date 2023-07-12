@@ -16,14 +16,14 @@ class AuxillaryGuardian(BaseModel, Base):
         Args:
             BaseModel (_type_): class
             Base (_type_): sqlalchemy declarative_base
+            (special) full_name: concat parent(last_name, first_name and
+                (not null) other_name.
     """
 
     __tablename__ = 'auxillaries'
     super_id = Column(String(64), ForeignKey('parents.id'))
     parent_id = Column(String(64), nullable=False)
-    first_name = Column(String(64), nullable=False)
-    last_name = Column(String(64), nullable=False)
-    other_name = Column(String(64))
+    full_name = Column(String(64), nullable=False, unique=True)
     gender = Column(Enum('MALE', 'FEMALE', 'OTHERS'))
     tag = Column(Enum('AUXILLARY-GUARDIAN'))
 
