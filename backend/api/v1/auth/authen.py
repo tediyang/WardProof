@@ -11,6 +11,8 @@ from models import storage
 from flask_bcrypt import check_password_hash
 from flask_jwt_extended import create_access_token
 from flasgger.utils import swag_from
+from sqlalchemy.exc import IntegrityError
+from ..errors import UnauthorizedError
 import datetime
 
 
@@ -24,18 +26,21 @@ def school_signup():
     Returns:
         json: school id
     """
-    body = request.get_json()
-    school = storage.validate(School, {'email': body.get('email')})
+    try:
+        body = request.get_json()
 
-    # if school is true return email already used.
-    if school:
+        new_school = School(**body)
+        id = new_school.id
+        storage.new(new_school)
+        storage.save()
+
+    except IntegrityError:
         abort(400, description='Email address already exists')
+    except Exception as e:
+        abort(400, description=f'An error occurred: {str(e)}')
 
-    new_school = School(**body)
-    id = new_school.id
-    storage.new(new_school)
-    storage.save()
-    storage.close()
+    finally:
+        storage.close()
 
     return jsonify({'id': id}), 201
 
@@ -49,18 +54,21 @@ def parent_signup():
     Returns:
         json: parent id
     """
-    body = request.get_json()
-    parent = storage.validate(Parent, {'email': body.get('email')})
+    try:
+        body = request.get_json()
 
-    # if parent is true return email already used.
-    if parent:
+        new_parent = Parent(**body)
+        id = new_parent.id
+        storage.new(new_parent)
+        storage.save()
+
+    except IntegrityError:
         abort(400, description='Email address already exists')
+    except Exception as e:
+        abort(400, description=f'An error occurred: {str(e)}')
 
-    new_parent = Parent(**body)
-    id = new_parent.id
-    storage.new(new_parent)
-    storage.save()
-    storage.close()
+    finally:
+        storage.close()
 
     return jsonify({'id': id}), 201
 
@@ -75,18 +83,24 @@ def school_login():
     Returns:
         json: access token
     """
-    body = request.get_json()
-    school = storage.validate(School, {'email': body.get('email')})
-    if not school:
+    try:
+        body = request.get_json()
+        school = storage.validate(School, {'email': body.get('email')})
+
+        authorized = check_password_hash(school.password, body.get('password'))
+        if not authorized:
+            raise UnauthorizedError
+
+        expires = datetime.timedelta(days=3)
+        access_token = create_access_token(identity=school.id,
+                                        expires_delta=expires)
+
+    except AttributeError:
         abort(400, description='No account registered to this email')
-
-    authorized = check_password_hash(school.password, body.get('password'))
-    if not authorized:
+    except UnauthorizedError:
         abort(401, description='Email or password invalid')
-
-    expires = datetime.timedelta(days=3)
-    access_token = create_access_token(identity=school.id,
-                                       expires_delta=expires)
+    except Exception as e:
+        abort(400, description=f'An error occurred: {str(e)}')
 
     return jsonify({'token': access_token}), 200
 
@@ -100,17 +114,22 @@ def parent_login():
     Returns:
         json: access token
     """
-    body = request.get_json()
-    parent = storage.validate(Parent, {'email': body.get('email')})
-    if not parent:
+    try:
+        body = request.get_json()
+        parent = storage.validate(Parent, {'email': body.get('email')})
+
+        authorized = check_password_hash(parent.password, body.get('password'))
+        if not authorized:
+            raise UnauthorizedError
+
+        expires = datetime.timedelta(days=3)
+        access_token = create_access_token(identity=parent.id,
+                                            expires_delta=expires)
+    except AttributeError:
         abort(400, description='No account registered to this email')
-
-    authorized = check_password_hash(parent.password, body.get('password'))
-    if not authorized:
+    except UnauthorizedError:
         abort(401, description='Email or password invalid')
-
-    expires = datetime.timedelta(days=3)
-    access_token = create_access_token(identity=parent.id,
-                                       expires_delta=expires)
+    except Exception as e:
+        abort(400, description=f'An error occurred: {str(e)}')
 
     return jsonify({'token': access_token}), 200
