@@ -12,6 +12,8 @@ from flask_cors import CORS
 from api.v1.auth import auth_parent
 from api.v1.auth import auth_school
 from flask_jwt_extended import JWTManager
+from flask_restful import Api
+from api.v1 import errors
 
 
 app = Flask(__name__)
@@ -21,6 +23,8 @@ app.register_blueprint(auth_school)
 app.register_blueprint(auth_parent)
 CORS(app)
 jwt = JWTManager(app)
+api = Api(app, errors=errors)
+
 
 @app.teardown_appcontext
 def close_dbsession(error):
@@ -35,6 +39,7 @@ def not_found(error):
         resource not found
     """
     return make_response(jsonify({'error': "Not found"}), 404)
+
 
 app.config['SWAGGER'] = {
     'title': 'WardProof RESTFUL API'
